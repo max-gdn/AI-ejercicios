@@ -1,0 +1,97 @@
+================================================================
+CONSULTA AccesoNoche(Ana)
+----------------------------------------------------------------
+HACIA ADELANTE
+Ronda 1:
+  R_miembro_est [x=Ana] => Miembro(Ana)
+  R_miembro_prof [x=Marta] => Miembro(Marta)
+  R_beca [x=Ana] => Becario(Ana)
+Ronda 2:
+  R_acceso [x=Ana] => AccesoNoche(Ana)
+  R_acceso [x=Marta] => AccesoNoche(Marta)
+Ronda 3:
+  (nada nuevo: punto fijo)
+  Átomos nuevos: Miembro(Ana), Miembro(Marta), Becario(Ana), AccesoNoche(Ana), AccesoNoche(Marta)
+  => PROBADA
+----------------------------------------------------------------
+HACIA ATRÁS
+META AccesoNoche(Ana)
+  no hay hecho que unifique
+  REGLA R_acceso [x=Ana]
+    META Miembro(Ana)
+      no hay hecho que unifique
+      REGLA R_miembro_est [x=Ana]
+        META Estudiante(Ana)
+          HECHO Estudiante(Ana)
+        META TieneCredencial(Ana)
+          HECHO TieneCredencial(Ana)
+    META HorarioNocturno(Hoy)
+      HECHO HorarioNocturno(Hoy)
+  => PROBADA
+================================================================
+CONSULTA AccesoNoche(Luis)
+----------------------------------------------------------------
+HACIA ADELANTE
+Ronda 1:
+  R_miembro_est [x=Ana] => Miembro(Ana)
+  R_miembro_prof [x=Marta] => Miembro(Marta)
+  R_beca [x=Ana] => Becario(Ana)
+Ronda 2:
+  R_acceso [x=Ana] => AccesoNoche(Ana)
+  R_acceso [x=Marta] => AccesoNoche(Marta)
+Ronda 3:
+  (nada nuevo: punto fijo)
+  Átomos nuevos: Miembro(Ana), Miembro(Marta), Becario(Ana), AccesoNoche(Ana), AccesoNoche(Marta)
+  => NO probada
+----------------------------------------------------------------
+HACIA ATRÁS
+META AccesoNoche(Luis)
+  no hay hecho que unifique
+  REGLA R_acceso [x=Luis]
+    META Miembro(Luis)
+      no hay hecho que unifique
+      REGLA R_miembro_est [x=Luis]
+        META Estudiante(Luis)
+          HECHO Estudiante(Luis)
+        META TieneCredencial(Luis)
+          no hay hecho que unifique
+      la regla R_miembro_est falla para Miembro(Luis)
+      REGLA R_miembro_prof [x=Luis]
+        META Profesor(Luis)
+          no hay hecho que unifique
+      la regla R_miembro_prof falla para Miembro(Luis)
+  la regla R_acceso falla para AccesoNoche(Luis)
+  => NO probada
+================================================================
+CONSULTA AccesoNoche(Marta)
+----------------------------------------------------------------
+HACIA ADELANTE
+Ronda 1:
+  R_miembro_est [x=Ana] => Miembro(Ana)
+  R_miembro_prof [x=Marta] => Miembro(Marta)
+  R_beca [x=Ana] => Becario(Ana)
+Ronda 2:
+  R_acceso [x=Ana] => AccesoNoche(Ana)
+  R_acceso [x=Marta] => AccesoNoche(Marta)
+Ronda 3:
+  (nada nuevo: punto fijo)
+  Átomos nuevos: Miembro(Ana), Miembro(Marta), Becario(Ana), AccesoNoche(Ana), AccesoNoche(Marta)
+  => PROBADA
+----------------------------------------------------------------
+HACIA ATRÁS
+META AccesoNoche(Marta)
+  no hay hecho que unifique
+  REGLA R_acceso [x=Marta]
+    META Miembro(Marta)
+      no hay hecho que unifique
+      REGLA R_miembro_est [x=Marta]
+        META Estudiante(Marta)
+          no hay hecho que unifique
+      la regla R_miembro_est falla para Miembro(Marta)
+      REGLA R_miembro_prof [x=Marta]
+        META Profesor(Marta)
+          HECHO Profesor(Marta)
+    META HorarioNocturno(Hoy)
+      HECHO HorarioNocturno(Hoy)
+  => PROBADA
+================================================================
